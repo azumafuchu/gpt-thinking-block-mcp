@@ -27,7 +27,7 @@ CAPTURE_ENABLED = os.environ.get("CAPTURE_ENABLED", "0").lower() in {"1", "true"
 BIND_HOST = os.environ.get("MCP_BIND", "127.0.0.1")
 
 PROTOCOL_FALLBACK = "2025-06-18"
-WIDGET_URI = "ui://widget/gpt-thinking-block-v4.html"
+WIDGET_URI = "ui://widget/gpt-thinking-block-strawberry-v1.html"
 WIDGET_MIME = "text/html;profile=mcp-app"
 
 
@@ -309,7 +309,128 @@ WIDGET_HTML = r"""<!doctype html>
       font: 14px/1.72 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       letter-spacing: .003em;
     }
-  </style>
+
+/* Strawberry Milk — custom skin */
+:root[data-skin="strawberry"] {
+  --aqua: #ffdce9;
+  --sage: #f7b7d0;
+  --apricot: #e992b8;
+  --almond: #f6cada;
+  --cloud: #fff0f6;
+  --ink: #713652;
+  --muted: #975f79;
+  --line: rgba(198, 88, 137, .48);
+  --line-soft: rgba(219, 143, 178, .35);
+  --paper: #fff9fc;
+  --wash: #ffeaf3;
+  --shadow: rgba(158, 58, 105, .13);
+  --band-1: #f7b7d0;
+  --band-2: #ffdce9;
+  --band-3: #fff4f8;
+  --band-4: #e992b8;
+  --band-5: #f6cada;
+  --mark-line: #be5f8a;
+  --mark-second: #e992b8;
+  --style-bg: #f7b7d0;
+  --style-fg: #713652;
+  --style-line: #d887aa;
+  --effort-bg: #ffe2ed;
+  --effort-fg: #7b3b59;
+  --effort-line: #d995b3;
+  --skin-bg: #fff0f6;
+  --skin-fg: #914566;
+  --skin-line: #e9b0ca;
+}
+:root[data-skin="strawberry"][data-style="relational"] {
+  --style-bg: #e992b8;
+  --style-fg: #51233a;
+  --style-line: #c96e99;
+}
+:root[data-skin="strawberry"][data-effort="low"] {
+  --effort-bg: #fff0f6;
+  --effort-fg: #824260;
+  --effort-line: #edb4ce;
+}
+:root[data-skin="strawberry"][data-effort="medium"] {
+  --effort-bg: #ffdce9;
+  --effort-fg: #713652;
+  --effort-line: #df9ab9;
+}
+:root[data-skin="strawberry"][data-effort="high"] {
+  --effort-bg: #cc6d99;
+  --effort-fg: #fffafb;
+  --effort-line: #a7537b;
+}
+:root[data-skin="strawberry"] .card {
+  border-radius: 22px;
+  background:
+    linear-gradient(90deg, var(--band-1) 0 20%, var(--band-2) 20% 40%, var(--band-3) 40% 60%, var(--band-4) 60% 80%, var(--band-5) 80%) top / 100% 5px no-repeat,
+    radial-gradient(circle at 92% 10%, rgba(255,255,255,.78), transparent 38%),
+    linear-gradient(145deg, var(--paper), var(--wash));
+  box-shadow: inset 0 0 0 4px rgba(255,255,255,.28), 0 9px 24px var(--shadow);
+}
+:root[data-skin="strawberry"] .card::before { border-radius: 17px; }
+:root[data-skin="strawberry"][data-theme="dark"] {
+  --ink: #ffe6f1;
+  --muted: #e9abc7;
+  --line: rgba(242, 155, 195, .65);
+  --line-soft: rgba(247, 183, 208, .29);
+  --paper: #382233;
+  --wash: #4d2b43;
+  --shadow: rgba(0,0,0,.32);
+  --style-bg: #a95980;
+  --style-fg: #fff2f8;
+  --style-line: #d589ad;
+  --effort-bg: #7a4661;
+  --effort-fg: #fff0f6;
+  --effort-line: #bd7898;
+  --skin-bg: #60334e;
+  --skin-fg: #ffe7f1;
+  --skin-line: #cc80a5;
+}
+:root[data-skin="strawberry"][data-theme="dark"][data-style="relational"] {
+  --style-bg: #9b4c74;
+  --style-fg: #fff0f6;
+  --style-line: #c8759c;
+}
+:root[data-skin="strawberry"][data-theme="dark"][data-effort="high"] {
+  --effort-bg: #c36a94;
+  --effort-fg: #fffafb;
+  --effort-line: #e5a3c1;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-skin="strawberry"]:not([data-theme="light"]) {
+    --ink: #ffe6f1;
+    --muted: #e9abc7;
+    --line: rgba(242, 155, 195, .65);
+    --line-soft: rgba(247, 183, 208, .29);
+    --paper: #382233;
+    --wash: #4d2b43;
+    --shadow: rgba(0,0,0,.32);
+    --style-bg: #a95980;
+    --style-fg: #fff2f8;
+    --style-line: #d589ad;
+    --effort-bg: #7a4661;
+    --effort-fg: #fff0f6;
+    --effort-line: #bd7898;
+    --skin-bg: #60334e;
+    --skin-fg: #ffe7f1;
+    --skin-line: #cc80a5;
+  }
+  :root[data-skin="strawberry"][data-style="relational"]:not([data-theme="light"]) {
+    --style-bg: #9b4c74;
+    --style-fg: #fff0f6;
+    --style-line: #c8759c;
+  }
+  :root[data-skin="strawberry"][data-effort="high"]:not([data-theme="light"]) {
+    --effort-bg: #c36a94;
+    --effort-fg: #fffafb;
+    --effort-line: #e5a3c1;
+  }
+}
+/* End Strawberry Milk skin */
+
+</style>
 </head>
 <body>
   <section class="card" id="card" data-collapsed="false" aria-label="Thinking block">
@@ -391,7 +512,7 @@ WIDGET_HTML = r"""<!doctype html>
         || responseMeta;
       const style = resultMeta.style || input.style || output.style || "deep_think";
       const effort = resultMeta.effort || input.effort || output.effort || "";
-      const skin = resultMeta.skin || input.skin || output.skin || "botanical";
+      const skin = resultMeta.skin || input.skin || output.skin || "strawberry";
       document.documentElement.dataset.style = style;
       document.documentElement.dataset.effort = effort;
       document.documentElement.dataset.skin = skin;
@@ -470,15 +591,16 @@ THINKING_DESCRIPTIONS = {
 
 SKIN_DESCRIPTIONS = {
     "en": (
-        "Visual skin for this card. Use botanical for warm paper, sage, almond, "
-        "and apricot tones; use microglow for pearl white, clear cyan, lavender ice, "
-        "mint haze, and glass-like morning light. Always honor the user's explicit "
-        "choice; otherwise choose the skin that best suits the turn."
+        "Visual skin for this card. botanical is warm paper and sage; "
+        "microglow is pearl white, cyan, lavender ice, and glass-like morning light; "
+        "strawberry is soft strawberry-milk pink with cream and berry text. "
+        "Always honor the user's explicit choice; otherwise prefer strawberry."
     ),
     "zh-CN": (
-        "本轮卡片的视觉皮肤。botanical 是温暖的纸张、鼠尾草、杏仁与杏色；"
-        "microglow 是珍珠白、澄澈青蓝、薰衣草冰、薄荷雾与玻璃般的晨光。"
-        "用户明确指定时必须遵循；未指定时选择最适合本轮氛围的皮肤。"
+        "本轮卡片的视觉皮肤。botanical 是鼠尾草绿暖纸风；"
+        "microglow 是珍珠白、冰蓝与薰衣草色；"
+        "strawberry 是奶油粉、樱花粉与莓果色文字。"
+        "用户明确指定时必须遵循用户选择；否则优先使用 strawberry。"
     ),
 }
 
@@ -520,7 +642,7 @@ TOOL = {
             },
             "skin": {
                 "type": "string",
-                "enum": ["botanical", "microglow"],
+                "enum": ["botanical", "microglow", "strawberry"],
                 "description": SKIN_DESCRIPTIONS[PROMPT_LANGUAGE],
             },
         },
@@ -584,7 +706,7 @@ def openapi(base):
                                      "description": TOOL["inputSchema"]["properties"]["thinking"]["description"]},
                         "effort": {"type": "string", "enum": ["low", "medium", "high"],
                                    "description": TOOL["inputSchema"]["properties"]["effort"]["description"]},
-                        "skin": {"type": "string", "enum": ["botanical", "microglow"],
+                        "skin": {"type": "string", "enum": ["botanical", "microglow", "strawberry"],
                                  "description": TOOL["inputSchema"]["properties"]["skin"]["description"]},
                     },
                 }}}},
@@ -620,7 +742,7 @@ def handle(req):
                 "style": args.get("style") or "deep_think",
                 "thinking": args.get("thinking") or "",
                 "effort": args.get("effort") or "",
-                "skin": args.get("skin") or "botanical",
+                "skin": args.get("skin") or "strawberry",
             },
             "isError": False,
         }}
